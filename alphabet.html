@@ -8,21 +8,18 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-image: url('alpha.jpg'); /* your background image */
+      background-image: url('alpha.jpg');
       background-size: cover;
-      background-repeat: repeat; /* allows movement */
-      background-position: 0 0;
+      background-repeat: repeat;
       min-height: 100vh;
+      margin: 0;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      margin-right: 200px;
-      padding: 20px;
+      padding-right: 200px;
     }
 
-    /* ===== SIDEBAR ===== */
+    /* Sidebar */
     .sidebar {
       position: fixed;
       right: 0;
@@ -33,18 +30,18 @@
       padding-top: 40px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 15px;
     }
 
     .sidebar a {
       text-decoration: none;
       color: white;
       background: rgb(77, 92, 77);
-      padding: 15px;
+      padding: 14px;
       margin: 0 10px;
       border-radius: 10px;
       text-align: center;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
       transition: 0.3s;
     }
@@ -53,50 +50,89 @@
       background: rgba(255, 255, 255, 0.4);
     }
 
-    /* ===== MAIN CONTENT ===== */
+    /* Main content */
     .content {
-      margin-right: 200px; /* space for right sidebar */
-      padding: 20px;
+      text-align: center;
     }
 
     h1 {
-      margin-top: 20px;
       font-size: 40px;
       color: white;
-      text-shadow: 1px 1px 5px #000; /* optional for readability */
+      text-shadow: 1px 1px 5px #000;
+      margin-bottom: 20px;
     }
 
     .alphabet-container {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       gap: 20px;
-      padding: 30px;
+      padding: 20px;
       max-width: 900px;
       margin: auto;
     }
 
     .letter-box {
       background: rgb(125, 189, 8);
-      padding: 25px;
+      width: 100%;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-size: 32px;
       border-radius: 15px;
       font-weight: bold;
-      transition: transform 0.2s, background 0.2s;
       color: white;
       text-shadow: 1px 1px 3px #000;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, background 0.2s;
     }
 
     .letter-box:hover {
-      transform: scale(1.1);
+      transform: scale(1.08);
       background: rgba(255, 255, 255, 0.4);
     }
 
+    /* POPUP BACKGROUND */
+    .popup-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    /* BIG IMAGE */
+    .popup-img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 20px;
+      background: white;
+      padding: 10px;
+    }
+
+    /* CLOSE BUTTON */
+    .close-popup {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- ===== RIGHT SIDEBAR MENU ===== -->
+  <!-- Sidebar -->
   <div class="sidebar">
     <a href="index.html">Home</a>
     <a href="colors.html">Colors</a>
@@ -105,47 +141,69 @@
     <a href="alphabet.html">Alphabet</a>
     <a href="numbers.html">Numbers</a>
     <a href="story.html">Story</a>
-    <a href="multiplication table.html">Multiplication table</a>
+    <a href="multiplication.html">Multiplication table</a>
     <a href="heros.html">Philippine national heroes</a>
-    <a href="vege.html">fruits/vegetables</a>
-  
+    <a href="vege.html">Fruits/vegetables</a>
   </div>
 
-  <!-- ===== MAIN CONTENT ===== -->
   <div class="content">
 
     <h1>THE ALPHABET</h1>
 
     <div class="alphabet-container">
-      <div class="letter-box">Aa</div>
-      <div class="letter-box">Bb</div>
-      <div class="letter-box">Cc</div>
-      <div class="letter-box">Dd</div>
-      <div class="letter-box">Ee</div>
-      <div class="letter-box">Ff</div>
-      <div class="letter-box">Gg</div>
-      <div class="letter-box">Hh</div>
-      <div class="letter-box">Ii</div>
-      <div class="letter-box">Jj</div>
-      <div class="letter-box">Kk</div>
-      <div class="letter-box">Ll</div>
-      <div class="letter-box">Mm</div>
-      <div class="letter-box">Nn</div>
-      <div class="letter-box">Oo</div>
-      <div class="letter-box">Pp</div>
-      <div class="letter-box">Qq</div>
-      <div class="letter-box">Rr</div>
-      <div class="letter-box">Ss</div>
-      <div class="letter-box">Tt</div>
-      <div class="letter-box">Uu</div>
-      <div class="letter-box">Vv</div>
-      <div class="letter-box">Ww</div>
-      <div class="letter-box">Xx</div>
-      <div class="letter-box">Yy</div>
-      <div class="letter-box">Zz</div>
+
+      <!-- Letter A -->
+      <div class="letter-box" onclick="toggleImage('1.jpg')">
+        <span class="letter-text">Aa</span>
+      </div>
+
+      <!-- All other letter boxes -->
+      <div class="letter-box" onclick="toggleImage('2.jpg')"><span class="letter-text">Bb</span></div>
+      <div class="letter-box" onclick="toggleImage('3.jpg')"><span class="letter-text">Cc</span></div>
+      <div class="letter-box" onclick="toggleImage('4.jpg')"><span class="letter-text">Dd</span></div>
+      <div class="letter-box" onclick="toggleImage('5.jpg')"><span class="letter-text">Ee</span></div>
+      <div class="letter-box" onclick="toggleImage('6.jpg')"><span class="letter-text">Ff</span></div>
+      <div class="letter-box" onclick="toggleImage('7.jpg')"><span class="letter-text">Gg</span></div>
+      <div class="letter-box" onclick="toggleImage('8.jpg')"><span class="letter-text">Hh</span></div>
+      <div class="letter-box" onclick="toggleImage('9.jpg')"><span class="letter-text">Ii</span></div>
+      <div class="letter-box" onclick="toggleImage('10.jpg')"><span class="letter-text">Jj</span></div>
+      <div class="letter-box" onclick="toggleImage('11.jpg')"><span class="letter-text">Kk</span></div>
+      <div class="letter-box" onclick="toggleImage('12.jpg')"><span class="letter-text">Ll</span></div>
+      <div class="letter-box" onclick="toggleImage('13.jpg')"><span class="letter-text">Mm</span></div>
+      <div class="letter-box" onclick="toggleImage('14.jpg')"><span class="letter-text">Nn</span></div>
+      <div class="letter-box" onclick="toggleImage('15.jpg')"><span class="letter-text">Oo</span></div>
+      <div class="letter-box" onclick="toggleImage('16.jpg')"><span class="letter-text">Pp</span></div>
+      <div class="letter-box" onclick="toggleImage('17.jpg')"><span class="letter-text">Qq</span></div>
+      <div class="letter-box" onclick="toggleImage('18.jpg')"><span class="letter-text">Rr</span></div>
+      <div class="letter-box" onclick="toggleImage('19.jpg')"><span class="letter-text">Ss</span></div>
+      <div class="letter-box" onclick="toggleImage('20.jpg')"><span class="letter-text">Tt</span></div>
+      <div class="letter-box" onclick="toggleImage('21.jpg')"><span class="letter-text">Uu</span></div>
+      <div class="letter-box" onclick="toggleImage('22.jpg')"><span class="letter-text">Vv</span></div>
+      <div class="letter-box" onclick="toggleImage('23.jpg')"><span class="letter-text">Ww</span></div>
+      <div class="letter-box" onclick="toggleImage('24.jpg')"><span class="letter-text">Xx</span></div>
+      <div class="letter-box" onclick="toggleImage('25.jpg')"><span class="letter-text">Yy</span></div>
+      <div class="letter-box" onclick="toggleImage('26.jpg')"><span class="letter-text">Zz</span></div>
+
     </div>
 
   </div>
+
+  <!-- POPUP FOR BIG IMAGE -->
+  <div class="popup-bg" id="popup">
+    <span class="close-popup" onclick="closePopup()">×</span>
+    <img id="popupImage" class="popup-img" src="">
+  </div>
+
+  <script>
+    function toggleImage(imgFile) {
+      document.getElementById("popupImage").src = imgFile;
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
 
 </body>
 </html>
